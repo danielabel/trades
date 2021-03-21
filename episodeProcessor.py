@@ -1,12 +1,18 @@
 from functools import reduce
+from decimal import *
 
 
 def balance_accumulator(total, row):
-    return total - row[0] * row[1]
+    return total - Decimal(row[0]) * Decimal(row[1])
 
 
 def final_balance(df):
-    return reduce(balance_accumulator, zip(df['Trade Price'], df['Trade Quantity']), 0)
+    print('final_balance')
+    print(df['Trade Price'][0])
+    print(type(df['Trade Price'][0]))
+    total = reduce(balance_accumulator, zip(df['Trade Price'], df['Trade Quantity']), Decimal('0'))
+    cents = Decimal('0.01')
+    return total.quantize(cents, ROUND_HALF_UP)
 
 
 def cost(quantity, price):
