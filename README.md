@@ -4,14 +4,25 @@ This repo contains a demo python command line tool to
 calculate the total profit or loss for the Trade Episode
 in the file provided.
 
+It's designed to operate over a CSV file that contains trade-data 
+in a similar form to that found in the `sample_data` directory. 
+
+## prerequasits 
+1. [python 3.9](https://www.python.org/downloads/) - (or homebrew or [pyenv](https://github.com/pyenv/pyenv)) 
+2. [pipenv](https://github.com/pypa/pipenv)
+
 ## How to use 
 
+Clone the github repo to your local machine, install Python 3.9 and `pipenv`
+
+Run the following commands
 ```
-python main.py --file <file to process>
+pipenv install
+pipenv run python main.py  --file <file to process>
 ```
 
-Its designed to operate over a CSV file that contains trade-data in a similar form to
-that found in the `sample_data` directory. 
+`pipenv run python main.py` will run the sample file provided. 
+
 
 ## Usage Notes
 File provided should contain one Trade Episode that has
@@ -65,6 +76,11 @@ write code with some performance considerations in mind for larger data sets.
 With this in mind I've used `zip` and `reduce` rather than the easier to read
 dataframe manipulations.
 
+### Problems not solved 
+1. The tests cannot load the source modules without an empty test file in the root directory 
+2. Performance needs - I would have liked to have time to see what size files might be expected and tested / benchmarked the routines
+3. an acceptance test [pytest can cature stdout](https://docs.pytest.org/en/stable/capture.html) so there is a simple option 
+   
 ## Technology selection
 
 ### Python environment management: `pipenv`. 
@@ -78,9 +94,13 @@ I considered `pandas` vs `csv` for csv file loading.
    `pandas` got the job done and gave me options to consider.
       
    With hindsight, `pandas` is a pretty heavy hammer to get done what I needed, 
-   and it might distract as much as it helps. 
+   and it might distract as much as it helps.
+
+   The tradeoffs at this point seem to be good defaults vs opaque. 
+   For example: the loading of files is simple but more complex 
+   processing (calculating profit) was a little tricksy. 
    
-### Testing framework: `pytest`
+### Unit testing framework: `pytest`
    
 There were a number of options here. I picked what looked to be a 
    simple popular option with low boilerplate.  
