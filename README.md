@@ -7,11 +7,18 @@ This repo contains a demo python command line tool.
 
 This is WIP: Currently the app is only operated by running test code.
 
+## Usage Notes
+- Assumed date format is dd/mm/YYYY (23/01/2012)
+- Will order data by 'Trade Date' and 'Trade Identifier'
+
+
 ## features not yet included
 1. Verify all trades are all in same currency - or set as an assumption
 2. Verify that an episode is complete 
-3. Either verify column names eixst or Allow important column names to specified
-4. Consider use of `NumPy` to do calculations to optimise for large file sets  
+3. Either verify column names exist or Allow important column names to specified
+4. Consider use of `NumPy` to do calculations to optimise for large file sets
+5. deal with gaps, nulls, nan
+6. use better than float for currency
 
 # Development notes
 
