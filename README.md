@@ -6,9 +6,11 @@ in the file provided.
 
 ## How to use 
 
+```
 python main.py --file <file to process>
+```
 
-It operates over a CSV file that contains trade-data in a similar form to
+Its designed to operate over a CSV file that contains trade-data in a similar form to
 that found in the `sample_data` directory. 
 
 ## Usage Notes
@@ -20,11 +22,11 @@ File provided should contain one Trade Episode that has
 
 It accepts files that contain unordered trades and will order by 'Trade Date' and 'Trade Identifier'
 
-
 ## features not yet included
 0. No integration test (is one needed?)
-3. Either verify column names exist or Allow important column names to specified
-4. Consider use of `NumPy` to do calculations to optimise for large file sets
+1. Graph drawing
+2. Verifying column names exist - failing fast
+3. Large data sets - Consider direct use of `NumPy` to do calculations to optimise if needed under test.
 
 # Development notes
 
