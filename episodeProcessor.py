@@ -7,9 +7,6 @@ def balance_accumulator(total, row):
 
 
 def final_balance(df):
-    print('final_balance')
-    print(df['Trade Price'][0])
-    print(type(df['Trade Price'][0]))
     total = reduce(balance_accumulator, zip(df['Trade Price'], df['Trade Quantity']), Decimal('0'))
     cents = Decimal('0.01')
     return total.quantize(cents, ROUND_HALF_UP)
