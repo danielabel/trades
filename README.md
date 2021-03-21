@@ -13,6 +13,7 @@ This is WIP: Currently the app is only operated by running test code.
 
 
 ## features not yet included
+0. No integration test (is one needed?)
 1. Verify all trades are all in same currency - or set as an assumption
 2. Verify that an episode is complete 
 3. Either verify column names exist or Allow important column names to specified
@@ -73,5 +74,5 @@ There were a number of options here. I picked what looked to be a
 
 ### Project directory structure: Python Standard 
    
-Following a mix of [hithchiker's guide to python](https://docs.python-guide.org/writing/structure/#structure-of-the-repository) 
+Following a mix of [the hitchhiker's guide to python](https://docs.python-guide.org/writing/structure/#structure-of-the-repository) 
    and pytest advice. 
