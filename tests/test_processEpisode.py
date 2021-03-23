@@ -38,3 +38,16 @@ def test_calc_episode_balance_with_rounding():
 
     # then we get the expected total
     assert profit == Decimal('30.85')
+
+
+def test_add_stock_accumulation():
+    # given a data frame with a Trade quantity column
+    df = pandas.DataFrame([['10', 5], ['12', 5], ['8', 1], ['2', 1], ['13', -12]],
+                          columns=[TRADE_PRICE, TRADE_QUANTITY])
+
+    # when we add a Quantity Held column
+    episodeProcessor.add_quantity_held(df)
+
+    # then we get the expected total
+    expected = [5, 10, 11, 12, 0]
+    assert all([a == b for a, b in zip(df[QUANTITY_HELD], expected)])

@@ -19,3 +19,7 @@ def round_to_currency(total):
 
 def balance_accumulator(total, row):
     return total - Decimal(row[0]) * Decimal(row[1])
+
+
+def add_quantity_held(df):
+    df['Quantity Held'] = df[TRADE_QUANTITY].cumsum()

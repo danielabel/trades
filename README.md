@@ -21,19 +21,21 @@ Run the following commands
 
 and then 
 
-`pipenv run episode` to run the sample file provided.
+`pipenv run episode` to run the sample file provided. A plot will be produced and saved to `plot.pdf`
    
-or
+### options
 
-`pipenv run episode  --file <file to process>` to process another file
+`pipenv run episode  --file <file to process>` to process a given file
+
+`pipenv run episode  --plot <filename>` to change the name of the plot file output
 
 
 ## Usage Notes
-File provided should contain one Trade Episode that has
-- date format of dd/mm/YYYY (23/01/2012)
-- contains the following columns `Trade Date `, `Trade Identifier`, `Trade Quantity`, `Trade Price`
-- all trades in the same currency
-- mo sparse, missing or badly formatted data
+File provided should contain one Trade Episode that: 
+ * a UK date format: dd/mm/YYYY (23/01/2012)
+ * contains the following columns `Trade Date `, `Trade Identifier`, `Trade Quantity`, `Trade Price`
+ * has all trades in the same currency
+ * contains mo sparse, missing or badly formatted data
 
 It accepts files that contain unordered trades and will order by 'Trade Date' and 'Trade Identifier'
 
