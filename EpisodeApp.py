@@ -1,5 +1,4 @@
-import episodeLoader
-import episodeProcessor
+from episode import episodeLoader, episodeProcessor
 from columns import *
 
 

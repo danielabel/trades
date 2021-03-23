@@ -1,4 +1,4 @@
-import episodeLoader
+from episode import episodeLoader
 from datetime import datetime
 from columns import *
 

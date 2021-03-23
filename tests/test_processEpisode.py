@@ -1,5 +1,5 @@
 import pandas
-import episodeProcessor
+from episode import episodeProcessor
 from decimal import Decimal
 from columns import *
 
