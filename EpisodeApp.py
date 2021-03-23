@@ -9,4 +9,4 @@ class EpisodeApp:
 
     def plot_episode(self, plot_path):
         episodeProcessor.add_quantity_held(self._data)
-        self._data.plot.area(x=TRADE_DATE, y=QUANTITY_HELD).get_figure().savefig(plot_path)
+        self._data.plot.area(x=TRADE_DATE, y=QUANTITY_HELD).get_figure().savefig(plot_path, format='pdf')

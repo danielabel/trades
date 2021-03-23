@@ -5,7 +5,9 @@ calculate the total profit or loss for the Trade Episode
 in the file provided.
 
 It's designed to operate over a CSV file that contains trade-data 
-in a form matching tha to the file located in the `sample_data` directory. 
+in a form matching tha to the file located in the `sample_data` directory.
+
+It reports the final balance of the episode as well as producing a plot of the trades as a PDF
 
 ## Pre-requisites 
 1. [python 3.9](https://www.python.org/downloads/) - (or homebrew or [pyenv](https://github.com/pyenv/pyenv))
@@ -43,7 +45,7 @@ It calculates the price result to the nearest cent and rounds up from a half-cen
 
 ## features not yet included
 
-1. Verifying column names exist - failing fast
+1. It does not check that the required columns exist on loading to fail fast
 2. Large data sets - Consider direct use of `NumPy` to do calculations to optimise if needed under test.
 
 # Development notes
