@@ -18,10 +18,10 @@ Clone the github repo to your local machine, install Python 3.9 and `pipenv`
 Run the following commands
 ```
 pipenv install
-pipenv run python main.py  --file <file to process>
+pipenv run episode  --file <file to process>
 ```
 
-`pipenv run python main.py` will run the sample file provided. 
+`pipenv run episode` will run the sample file provided. 
 
 
 ## Usage Notes
@@ -51,6 +51,13 @@ I've looked to use technologies and patterns that may not be perfect but are
 well enough used to be understood by a more experienced python engineer. 
 
 Feedback is welcome. 
+
+## Testing and changing
+
+To run the tests - excecute the following command
+```
+pipenv run test
+```
 
 ## Design notes
 A main consideration of the code structure was what I could and should test.
