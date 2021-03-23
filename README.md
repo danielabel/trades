@@ -5,10 +5,10 @@ calculate the total profit or loss for the Trade Episode
 in the file provided.
 
 It's designed to operate over a CSV file that contains trade-data 
-in a similar form to that found in the `sample_data` directory. 
+in a form matching tha to the file located in the `sample_data` directory. 
 
-## prerequasits 
-1. [python 3.9](https://www.python.org/downloads/) - (or homebrew or [pyenv](https://github.com/pyenv/pyenv)) 
+## Pre-requisites 
+1. [python 3.9](https://www.python.org/downloads/) - (or homebrew or [pyenv](https://github.com/pyenv/pyenv))
 2. [pipenv](https://github.com/pypa/pipenv)
 
 ## How to use 
@@ -16,12 +16,16 @@ in a similar form to that found in the `sample_data` directory.
 Clone the github repo to your local machine, install Python 3.9 and `pipenv`
 
 Run the following commands
-```
-pipenv install
-pipenv run episode  --file <file to process>
-```
 
-`pipenv run episode` will run the sample file provided. 
+`pipenv install` to install the required libraries
+
+and then 
+
+`pipenv run episode` to run the sample file provided.
+   
+or
+
+`pipenv run episode  --file <file to process>` to process another file
 
 
 ## Usage Notes
@@ -42,6 +46,7 @@ It calculates the price result to the nearest cent and rounds up from a half-cen
 
 # Development notes
 
+## Background
 I'm an engineer with some previous light use of Python 5-6 years ago. 
 
 I've taken a blank-sheet-of-paper approach and looked to select good up-to-date 
@@ -55,14 +60,13 @@ Feedback is welcome.
 
 ## Testing and changing
 
-To run the tests - execute the following command
-```
-pipenv run test
-```
+To run the tests - execute the following after installing the libraries 
+
+`pipenv run test`
 
 ## Design notes
 A main consideration of the code structure was what I could and should test.
-What's going to drive the code? What's going to give me good coverage of the 
+Asking: What's going to drive the code? What's going to give me good coverage of the 
 key behaviours, with a good drivable interface?
 
 My initial approach was to get working functionality in a series of tests, 
