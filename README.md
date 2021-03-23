@@ -33,6 +33,8 @@ File provided should contain one Trade Episode that has
 
 It accepts files that contain unordered trades and will order by 'Trade Date' and 'Trade Identifier'
 
+It calculates the price result to the nearest cent and rounds up from a half-cent 
+
 ## features not yet included
 
 1. Verifying column names exist - failing fast

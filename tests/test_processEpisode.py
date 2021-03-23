@@ -16,7 +16,7 @@ def test_calc_episode_balance():
     assert profit == 36
 
 
-def test_calc_episode_balance_with_cents():
+def test_calc_episode_balance_with_cents_rounded_up():
     # given a data frame with a Trade price column (price is a string to avoid float nonsense)
     df = pandas.DataFrame([['10.52', 5], ['12.44', 5], ['8.33', 1], ['2', 1], ['13', -12]],
                           columns=[TRADE_PRICE, TRADE_QUANTITY])
