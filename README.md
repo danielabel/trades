@@ -34,10 +34,9 @@ File provided should contain one Trade Episode that has
 It accepts files that contain unordered trades and will order by 'Trade Date' and 'Trade Identifier'
 
 ## features not yet included
-0. No integration test (is one needed?)
-1. Graph drawing
-2. Verifying column names exist - failing fast
-3. Large data sets - Consider direct use of `NumPy` to do calculations to optimise if needed under test.
+
+1. Verifying column names exist - failing fast
+2. Large data sets - Consider direct use of `NumPy` to do calculations to optimise if needed under test.
 
 # Development notes
 
@@ -54,7 +53,7 @@ Feedback is welcome.
 
 ## Testing and changing
 
-To run the tests - excecute the following command
+To run the tests - execute the following command
 ```
 pipenv run test
 ```
@@ -83,11 +82,12 @@ write code with some performance considerations in mind for larger data sets.
 With this in mind I've used `zip` and `reduce` rather than the easier to read
 dataframe manipulations.
 
-### Problems not solved 
+### Problems not solved / incomplete work 
 1. The tests cannot load the source modules without an empty test file in the root directory 
 2. Performance needs - I would have liked to have time to see what size files might be expected and tested / benchmarked the routines
-3. an acceptance test [pytest can cature stdout](https://docs.pytest.org/en/stable/capture.html) so there is a simple option 
-   
+3. an acceptance test [pytest can cature stdout](https://docs.pytest.org/en/stable/capture.html) so there is a simple option
+4. I've selected to not use objects so so have low encapsulation - validate this approach 
+
 ## Technology selection
 
 ### Python environment management: `pipenv`. 
