@@ -1,16 +1,16 @@
 # Episode analysis command line tool
 
 This repo contains a demo python command line tool to 
-calculate the total profit or loss for the Trade Episode
-in the file provided.
+calculate the final balance (profit or loss) for a Trade Episode.
 
-It's designed to operate over a CSV file that contains trade-data 
-in a form matching tha to the file located in the `sample_data` directory.
+It's designed to operate over a CSV file that contains trade data 
+in a form matching that in the file located in the `sample_data` directory.
 
-It reports the final balance of the episode as well as producing a plot of the trades as a PDF
+As well as reporting the final balance of the episode it also produces a plot 
+of the trades as a PDF.
 
 ## Pre-requisites 
-1. [python 3.9](https://www.python.org/downloads/) - (or homebrew or [pyenv](https://github.com/pyenv/pyenv))
+1. [python 3.9](https://www.python.org/downloads/) - (supports [pyenv](https://github.com/pyenv/pyenv))
 2. [pipenv](https://github.com/pypa/pipenv)
 
 ## How to use 
@@ -19,84 +19,87 @@ Clone the github repo to your local machine, install Python 3.9 and `pipenv`
 
 Run the following commands
 
-`pipenv install` to install the required libraries
+`pipenv sync` to install the required libraries 
 
 and then 
 
-`pipenv run episode` to run the sample file provided. A plot will be produced and saved to `plot.pdf`
+`pipenv run episode` to run using the sample file provided. 
+
+A plot will be produced and saved to `plot.pdf`
    
 ### options
 
-`pipenv run episode  --file <file to process>` to process a given file
+ - `--file <file to process>` to process a given file
 
-`pipenv run episode  --plot <filename>` to change the name of the plot file output
+ - `--plot <filename>` to change the name of the plot file output
 
+example: `pipenv run episode --file data.csv --plot my-graph.pfd`  
 
 ## Usage Notes
-File provided should contain one Trade Episode that: 
- * a UK date format: dd/mm/YYYY (23/01/2012)
- * contains the following columns `Trade Date `, `Trade Identifier`, `Trade Quantity`, `Trade Price`
- * has all trades in the same currency
+File provided should contain a single Trade Episode that: 
+ * as a csv file that contains the following columns `Trade Date`, `Trade Identifier`, `Trade Quantity`, `Trade Price` 
+ * `Trade Date` should use a UK date format: dd/mm/YYYY (23/01/2012)
+ * all trades should be in the same currency
  * contains mo sparse, missing or badly formatted data
 
-It accepts files that contain unordered trades and will order by 'Trade Date' and 'Trade Identifier'
+It accepts files that contain unordered trades and will order by 'Trade Date' and  then 'Trade Identifier'
 
-It calculates the price result to the nearest cent and rounds up from a half-cent 
+It calculates the balance to the nearest cent and rounds up by a half-cent 
 
 ## features not yet included
 
-1. It does not check that the required columns exist on loading to fail fast
-2. Large data sets - Consider direct use of `NumPy` to do calculations to optimise if needed under test.
+1. Large data set handling - the command is untested with larger data sets
+2. Error handling - reporting should be sufficient for many cases but is basic 
 
 # Development notes
 
+## Test automation
+
+To run the tests - execute the following 
+
+```
+pipenv sync -d
+
+pipenv run test
+```
+
 ## Background
-I'm an engineer with some previous light use of Python 5-6 years ago. 
+The author is an engineer with some previous light use of Python, 5-6 years ago. 
+This project represents a learning curve of picking up Python.
 
-I've taken a blank-sheet-of-paper approach and looked to select good up-to-date 
-choices. This project represents that learning curve. I've documented my choices
-and reasoning below.
-
-I've looked to use technologies and patterns that may not be perfect but are
-well enough used to be understood by a more experienced python engineer. 
+This code project takes a blank-sheet-of-paper approach and looks to 
+select some good enough, up-to-date python technology choices. 
+The choices are documented below. 
 
 Feedback is welcome. 
 
-## Testing and changing
-
-To run the tests - execute the following after installing the libraries 
-
-`pipenv run test`
-
 ## Design notes
-A main consideration of the code structure was what I could and should test.
-Asking: What's going to drive the code? What's going to give me good coverage of the 
-key behaviours, with a good drivable interface?
-
-My initial approach was to get working functionality in a series of tests, 
-with the intention to wrap the combined behaviours either in an integration
-test with a light command line wrapper, or a direct test on the command line
-if that worked well.
 
 ### Currency processing
-
 I've coded to avoid using floats in Currency calculations as floats always go 
-wrong somewhere. Apologies if this is overkill or makes the code for this
-example harder to parse.  
+wrong somewhere. Apologies if this is overkill, or makes the code for this
+example harder to parse. I have a feeling there's probably a neater more 
+'pythonic' way to do this. 
 
 ### Performance
-
 Whilst I've not tested this with large data files, I've assumed a need to
 write code with some performance considerations in mind for larger data sets. 
 
 With this in mind I've used `zip` and `reduce` rather than the easier to read
 dataframe manipulations.
 
+### Code structure
+I was interested in exploring a module (Node.js) vs class (Java) approach to 
+code style and if there was a need for encapsulation.  This is reflected in the final code. 
+
+I am not certain I've built a python-istic file structure. 
+`EpisodeApp` might be better as a Package rather than a class, but my feeling is
+that what I have is good enough at this scale. Feedback very welcome here. 
+
 ### Problems not solved / incomplete work 
 1. The tests cannot load the source modules without an empty test file in the root directory 
-2. Performance needs - I would have liked to have time to see what size files might be expected and tested / benchmarked the routines
-3. an acceptance test [pytest can cature stdout](https://docs.pytest.org/en/stable/capture.html) so there is a simple option
-4. I've selected to not use objects so so have low encapsulation - validate this approach 
+2. Performance needs - I would have liked to have time to see what size files might be expected and tested / benchmarked the routines and maybe looked into direct use of `NumPy` to do calculations to optimise if needed under test.
+3. More mature (and tested) exception handling
 
 ## Technology selection
 
@@ -107,16 +110,23 @@ dataframe manipulations.
 ### Data loading: `pandas` 
    
 I considered `pandas` vs `csv` for csv file loading. 
-   `csv` looked to be operating at a lower level without helpful assumptions - great for low level control.
-   `pandas` got the job done and gave me options to consider.
-      
-   With hindsight, `pandas` is a pretty heavy hammer to get done what I needed, 
-   and it might distract as much as it helps.
 
-   The tradeoffs at this point seem to be good defaults vs opaque. 
-   For example: the loading of files is simple but more complex 
-   processing (calculating profit) was a little tricksy. 
-   
+`csv` looked to be operating at a lower level - great for low level control, but 
+required a lot of control to have it working usefully and flexibly.
+`pandas` looked o get the job of loading in and manipulating CSV files 
+at a high level of abstraction and helped get stuff done.
+
+`pandas` is a pretty heavy hammer to do what was needed, but I gained a lot
+of good defaults and probably produced a more flexible tool.
+
+### Data loading: also `pandas`
+
+Having made the choice of `pandas` for loading the data it seemed reasonable to
+also use this as a default for rendering a plot of the episode. 
+There are a lot of wonderful plotting and graphing tools in the Python world, and
+it would be great to explore them further, but as an addition to this sample 
+project, they felt like overkill.
+
 ### Unit testing framework: `pytest`
    
 There were a number of options here. I picked what looked to be a 
@@ -124,5 +134,5 @@ There were a number of options here. I picked what looked to be a
 
 ### Project directory structure: Python Standard 
    
-Following a mix of [the hitchhiker's guide to python](https://docs.python-guide.org/writing/structure/#structure-of-the-repository) 
-   and pytest advice. 
+I worked to follow a mix of [the hitchhiker's guide to python](https://docs.python-guide.org/writing/structure/#structure-of-the-repository) 
+   and pytest advice.  
