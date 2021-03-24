@@ -1,5 +1,5 @@
 import click
-from EpisodeApp import EpisodeApp
+from episode.EpisodeApp import EpisodeApp
 
 
 @click.command()

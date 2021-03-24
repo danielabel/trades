@@ -1,6 +1,6 @@
 import os
 from decimal import Decimal
-from EpisodeApp import EpisodeApp
+from episode.EpisodeApp import EpisodeApp
 
 
 def test_app_calculates_profit_from_sample_file():

@@ -1,6 +1,6 @@
 from functools import reduce
 from decimal import Decimal, ROUND_HALF_UP
-from columns import *
+from episode.columns import *
 
 
 def calc_total_of_all_buys_and_sells(df):

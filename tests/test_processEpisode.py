@@ -1,7 +1,7 @@
 import pandas
 from episode import episodeProcessor
 from decimal import Decimal
-from columns import *
+from episode.columns import *
 
 
 def test_calc_episode_balance():

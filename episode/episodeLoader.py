@@ -1,5 +1,5 @@
 import pandas as pd
-from columns import *
+from episode.columns import *
 
 
 def load_from_csv(path_to_file):

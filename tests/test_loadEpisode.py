@@ -1,6 +1,6 @@
 from episode import episodeLoader
 from datetime import datetime
-from columns import *
+from episode.columns import *
 
 
 def test_sample_episode_file_loads_correct_shape():

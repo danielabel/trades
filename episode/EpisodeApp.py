@@ -1,5 +1,5 @@
 from episode import episodeLoader, episodeProcessor
-from columns import *
+from episode.columns import *
 
 
 class EpisodeApp:
